@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.10.0
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true      # <-- IMPORTANTE para Shuffle
+      - bootstrap.memory_lock=true
+      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    networks:
+      - wazuh-net
+
+  wazuh.manager:
+    image: wazuh/wazuh-manager:4.7.3
+    container_name: wazuh-manager
+    hostname: wazuh-manager
+    ports:
+      - "1514:1514/udp"
+      - "1515:1515"
+      - "55000:55000"
+    volumes:
+      - wazuh-config:/var/ossec/config
+      - wazuh-logs:/var/ossec/logs
+      - wazuh-data:/var/ossec/data
+    networks:
+      - wazuh-net
+    depends_on:
+      - opensearch
+
+  wazuh.dashboard:
+    image: wazuh/wazuh-dashboard:4.7.3
+    container_name: wazuh-dashboard
+    ports:
+      - "5601:5601"
+    environment:
+      OPENSEARCH_HOSTS: "http://opensearch:9200"  # <-- sin https
+      ELASTICSEARCH_USERNAME: "admin"
+      ELASTICSEARCH_PASSWORD: "admin"
+      OPENSEARCH_SSL_VERIFY: "false"
+    depends_on:
+      - opensearch
+    networks:
+      - wazuh-net
+
+volumes:
+  wazuh-config:
+  wazuh-logs:
+  wazuh-data:
+  opensearch-data:
+
+networks:
+  wazuh-net:
+    external: true
