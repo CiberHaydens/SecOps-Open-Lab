@@ -16,31 +16,31 @@ Diseñar un laboratorio colaborativo basado en herramientas open-source que perm
 
 ### Diagrama de Alto Nivel
 
-     +---------------------+
-     |   GitHub Repository |
-     |  (scripts, playbooks,
-     |    documentación)   |
-     +----------+----------+
-                |
-        Colaboración remota
-                |
+                +---------------------+
+                |   GitHub Repository |
+                |  (scripts, playbooks,
+                |    documentación)   |
+                +----------+----------+
+                           |
+                   Colaboración remota
+                           |
+        +-----------------------------------------------+
+        |                    VPN Mesh                   |
+        |           (Tailscale o alternativa OSS)       |
+        +-------------------+------------+--------------+
+                            |            |
+                 +----------+----+  +----+-----------+   +-------------+
+                 |   Nodo 1     |  |    Nodo 2      |   |   Nodo 3    |
+                 |    Wazuh     |  | Shuffle SOAR   |   |   Scripts   |
+                 |     SIEM     |  |   Workflows    |   |   Python    |
+                 +---------------+  +----------------+   +-------------+
+                            |
+                            | Gmail API (OAuth2)
+                            |
+                     +--------------+
+                     | Gmail Account|
+                     +--------------+
 
-+---------------------------------------------------+
-| VPN Mesh |
-| (Tailscale o alternativa OSS) |
-+---------------------------------------------------+
-| | |
-+----+----+ +------+-------+ +----+------+
-| Nodo 1 | | Nodo 2 | | Nodo 3 |
-| Wazuh | | Shuffle SOAR | | Scripts |
-| SIEM | | Workflows | | Python |
-+---------+ +--------------+ +-----------+
-|
-| Gmail API (OAuth2)
-|
-+--------------+
-| Gmail Account|
-+--------------+
 
 
 ---
