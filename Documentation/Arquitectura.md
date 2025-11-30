@@ -137,8 +137,6 @@ Funciones principales:
 |   - Envío de acciones a Gmail / Notificaciones             |
 +-----------------------------------------------------------+
 
-
-
 ---
 
 ## 7. Requisitos Técnicos
