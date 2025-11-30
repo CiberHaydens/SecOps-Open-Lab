@@ -18,7 +18,8 @@ services:
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     networks:
-      - wazuh-net
+      - shuffle-wazuh-net
+
 
   wazuh.manager:
     image: wazuh/wazuh-manager:4.7.3
@@ -33,7 +34,7 @@ services:
       - wazuh-logs:/var/ossec/logs
       - wazuh-data:/var/ossec/data
     networks:
-      - wazuh-net
+      - shuffle-wazuh-net
     depends_on:
       - opensearch
 
@@ -50,7 +51,7 @@ services:
     depends_on:
       - opensearch
     networks:
-      - wazuh-net
+      - shuffle-wazuh-net
 
 volumes:
   wazuh-config:
@@ -59,5 +60,6 @@ volumes:
   opensearch-data:
 
 networks:
-  wazuh-net:
+  shuffle-wazuh-net:
     external: true
+

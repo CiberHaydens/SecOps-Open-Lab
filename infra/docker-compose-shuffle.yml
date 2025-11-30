@@ -11,7 +11,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - shuffle-net
+      - shuffle-wazuh-net
 
   backend:
     image: ghcr.io/shuffle/shuffle-backend:1.2.0
@@ -26,14 +26,18 @@ services:
 
       # <-- ¡Aquí la clave!
       SHUFFLE_OPENSEARCH_HOST: http://opensearch:9200
+      SHUFFLE_OPENSEARCH_URL: http://opensearch:9200
+      OPENSEARCH_URL: http://opensearch:9200
+      OPENSEARCH_SSL: "false"
+      OPENSEARCH_SSL_VERIFY: "false"
+      SHUFFLE_OPENSEARCH: "false"
 
     ports:
       - "${BACKEND_PORT:-5001}:5001"
     depends_on:
       - mongo
     networks:
-      - shuffle-net
-      - wazuh-net    # <-- Conecta con OpenSearch
+      - shuffle-wazuh-net   # <-- Conecta con OpenSearch
 
   frontend:
     image: ghcr.io/shuffle/shuffle-frontend:1.2.0
@@ -47,26 +51,32 @@ services:
     depends_on:
       - backend
     networks:
-      - shuffle-net
+      - shuffle-wazuh-net
 
   worker:
     image: ghcr.io/shuffle/shuffle-worker:1.2.0
     container_name: shuffle-worker
     restart: unless-stopped
-    env_file: .env
     environment:
       SHUFFLE_BACKEND_HOST: http://backend:5001
       SHUFFLE_APP_SECRET: ${SHUFFLE_APP_SECRET}
+      SHUFFLE_OPENSEARCH: "false"
+      SHUFFLE_MEMCACHED: ""
+      SHUFFLE_OPENSEARCH_URL: "http://opensearch:9200"
+      OPENSEARCH_URL: "http://opensearch:9200"
+      OPENSEARCH_SSL: "false"
+      OPENSEARCH_SSL_VERIFY: "false"
+      AUTHORIZATION: "worker_auth_key_12345"
+      SHUFFLE_WORKER_AUTHORIZATION: "worker_auth_key_12345"
+      EXECUTIONID: "worker-execution-123"
     depends_on:
       - backend
     networks:
-      - shuffle-net
+      - shuffle-wazuh-net
 
 volumes:
   mongo-data:
 
 networks:
-  shuffle-net:
-    external: true
-  wazuh-net:
+  shuffle-wazuh-net:
     external: true
