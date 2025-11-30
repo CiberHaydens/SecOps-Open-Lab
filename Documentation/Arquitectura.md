@@ -112,29 +112,31 @@ Funciones principales:
 ## 6. Diagrama de Componentes Internos
 
 +-----------------------------------------------------------+
-| SCRIPTS PYTHON |
-| +----------------------+ +-----------------------------+ |
-| | Extracción Gmail | | Análisis de Indicadores | |
-| | gmail_fetch.py | | phishing_analyzer.py | |
-| +----------------------+ +-----------------------------+ |
-| | | |
-+----------------|-----------------------------|------------+
-|
-| JSON event
-v
+|                        SCRIPTS PYTHON                     |
+|                                                           |
+|   +----------------------+     +-------------------------+ |
+|   |   Extracción Gmail   |     | Análisis de Indicadores | |
+|   |    gmail_fetch.py    |     |  phishing_analyzer.py   | |
+|   +----------------------+     +-------------------------+ |
+|                                                           |
+|                           JSON event                      |
 +-----------------------------------------------------------+
-| WAZUH SIEM |
-| - Reglas de alerta |
-| - Dashboards |
+                               |
+                               v
 +-----------------------------------------------------------+
-|
-| Evento de alerta
-v
+|                        WAZUH SIEM                         |
+|   - Reglas de alerta                                      |
+|   - Dashboards                                            |
 +-----------------------------------------------------------+
-| SHUFFLE SOAR |
-| - Playbooks de respuesta |
-| - Envío de acciones a Gmail / Notificaciones |
+                               |
+                               | Evento de alerta
+                               v
 +-----------------------------------------------------------+
+|                       SHUFFLE SOAR                        |
+|   - Playbooks de respuesta                                 |
+|   - Envío de acciones a Gmail / Notificaciones             |
++-----------------------------------------------------------+
+
 
 
 ---
