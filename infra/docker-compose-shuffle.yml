@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: shuffle-mongo
+    restart: always
+    env_file: .env
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - shuffle-net
+
+  backend:
+    image: ghcr.io/shuffle/shuffle-backend:1.2.0
+    container_name: shuffle-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SHUFFLE_APP_SECRET: ${SHUFFLE_APP_SECRET}
+      SHUFFLE_CLOUD_RUNNER: ${SHUFFLE_CLOUD_RUNNER}
+      MONGO_URI: ${MONGO_URI}
+      SHUFFLE_ORIGINS: ${SHUFFLE_ORIGINS}
+
+      # <-- ¡Aquí la clave!
+      SHUFFLE_OPENSEARCH_HOST: http://opensearch:9200
+
+    ports:
+      - "${BACKEND_PORT:-5001}:5001"
+    depends_on:
+      - mongo
+    networks:
+      - shuffle-net
+      - wazuh-net    # <-- Conecta con OpenSearch
+
+  frontend:
+    image: ghcr.io/shuffle/shuffle-frontend:1.2.0
+    container_name: shuffle-frontend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SHUFFLE_BACKEND_HOST: http://backend:5001
+    ports:
+      - "${FRONTEND_PORT:-3002}:80"
+    depends_on:
+      - backend
+    networks:
+      - shuffle-net
+
+  worker:
+    image: ghcr.io/shuffle/shuffle-worker:1.2.0
+    container_name: shuffle-worker
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SHUFFLE_BACKEND_HOST: http://backend:5001
+      SHUFFLE_APP_SECRET: ${SHUFFLE_APP_SECRET}
+    depends_on:
+      - backend
+    networks:
+      - shuffle-net
+
+volumes:
+  mongo-data:
+
+networks:
+  shuffle-net:
+    external: true
+  wazuh-net:
+    external: true
