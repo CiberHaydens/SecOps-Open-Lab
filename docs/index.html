@@ -3,149 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureMail Threat Automation</title>
+    <meta name="description" content="Mail Threat Automation - Sistema modular de detección y mitigación de amenazas de correo electrónico (En desarrollo)">
+    <meta name="keywords" content="seguridad, email, SOAR, SIEM, Wazuh, automatización, ciberseguridad, desarrollo">
+    <meta name="author" content="SecureMail Team">
+    <title>Mail Threat Automation - En Desarrollo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f512.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
+<header role="banner">
+    <div class="development-banner">
+        <span class="dev-icon">🚧</span>
+        <span class="dev-text">PROYECTO EN DESARROLLO - FUNCIONALIDAD LIMITADA</span>
+        <span class="dev-icon">⚠️</span>
+    </div>
     <div class="container">
-        <h1>🔐 SecureMail Threat Automation</h1>
-        <p class="subtitle">Automatización inteligente de amenazas basadas en correo</p>
-        <a href="#docs" class="btn-primary">Ver Documentación</a>
+        <div class="hero-content">
+            <h1 class="animate-fade-in">🔐 Mail Threat Automation - STILL BUILDING UP</h1>
+            <p class="subtitle animate-slide-up">Automatización inteligente de amenazas basadas en correo</p>
+            <div class="dev-notice">
+                <strong>⚠️ Importante:</strong> Este proyecto está actualmente en desarrollo. 
+                Muchas funcionalidades aún no están implementadas o son prototipos.
+            </div>
+            <div class="cta-buttons animate-slide-up-delay">
+                <a href="#docs" class="btn-primary">Ver Documentación</a>
+                <a href="#contacto" class="btn-secondary">Contactar</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-icons">
+                <span class="icon-shield">🛡️</span>
+                <span class="icon-email">📧</span>
+                <span class="icon-lock">🔒</span>
+            </div>
+        </div>
     </div>
 </header>
 
-<nav class="navbar">
-    <a href="#arquitectura">Arquitectura</a>
-    <a href="#workflow">Flujo de Trabajo</a>
-    <a href="#componentes">Componentes</a>
-    <a href="#soar">SOAR</a>
-    <a href="#wazuh">Wazuh</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#contacto">Contacto</a>
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+        <a href="#arquitectura" class="nav-link">Arquitectura</a>
+        <a href="#workflow" class="nav-link">Flujo de Trabajo</a>
+        <a href="#componentes" class="nav-link">Componentes</a>
+        <a href="#soar" class="nav-link">SOAR</a>
+        <a href="#wazuh" class="nav-link">Wazuh</a>
+        <a href="#roadmap" class="nav-link">Roadmap</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+    </div>
 </nav>
 
 <main class="container">
 
     <!-- INTRO -->
-    <section id="docs">
-        <h2>📘 Documentación Oficial</h2>
-        <p>
-            SecureMail Threat Automation es un sistema modular que detecta, clasifica
-            y mitiga correos potencialmente maliciosos combinando automatización SOAR,
-            análisis SIEM y recolección avanzada de logs mediante Gmail API.
-        </p>
+    <section id="docs" class="fade-in-section">
+        <div class="section-header">
+            <h2>📘 Documentación Oficial</h2>
+            <div class="section-underline"></div>
+            <div class="dev-badge">EN DESARROLLO</div>
+        </div>
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="dev-warning">
+                    <strong>⚠️ Estado Actual:</strong> Este proyecto se encuentra en fase de desarrollo activo.
+                    La documentación y funcionalidades descritas pueden cambiar significativamente.
+                </div>
+                <p class="lead">
+                    Mail Threat Automation es un sistema modular que detecta, clasifica
+                    y mitiga correos potencialmente maliciosos combinando automatización SOAR,
+                    análisis SIEM y recolección avanzada de logs mediante Gmail API.
+                </p>
+            </div>
+            <div class="feature-cards">
+                <div class="feature-card dev-card">
+                    <div class="card-icon">🔍</div>
+                    <div class="status-badge">PROTOTIPO</div>
+                    <h3>Detección</h3>
+                    <p>Análisis avanzado de correos sospechosos (En implementación)</p>
+                </div>
+                <div class="feature-card dev-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="status-badge">PLANIFICADO</div>
+                    <h3>Automatización</h3>
+                    <p>Respuestas automáticas con SOAR (En desarrollo)</p>
+                </div>
+                <div class="feature-card dev-card">
+                    <div class="card-icon">📊</div>
+                    <div class="status-badge">BETA</div>
+                    <h3>Monitoreo</h3>
+                    <p>Visibilidad completa con SIEM (Funcionalidad limitada)</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ARQUITECTURA -->
-    <section id="arquitectura">
-        <h2>🧱 Arquitectura del Sistema</h2>
-
-<pre class="diagram">
-                Gmail API
-                    ↓
-        [ SecureMail Collector ]
-                    ↓
-              Wazuh Manager (SIEM)
-                    ↓
-              OpenSearch Database
-                    ↓
-            Wazuh Dashboard (UI)
-
-
-        ┌──────────────────────────────┐
-        │            Shuffle           │
-        │──────────── SOAR ────────────│
-        │ - Playbooks automáticos      │
-        │ - Clasificación de emails    │
-        │ - Envío a SPAM               │
-        │ - Integraciones externas     │
-        └──────────────────────────────┘
-</pre>
+    <section id="arquitectura" class="fade-in-section">
+        <div class="section-header">
+            <h2>🧱 Arquitectura del Sistema</h2>
+            <div class="section-underline"></div>
+        </div>
+        
+        <div class="architecture-container">
+            <div class="flow-diagram">
+                <div class="flow-item">
+                    <span class="flow-icon">📧</span>
+                    <span class="flow-text">Gmail API</span>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <span class="flow-icon">🔄</span>
+                    <span class="flow-text">SecureMail Collector</span>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <span class="flow-icon">🛡️</span>
+                    <span class="flow-text">Wazuh Manager (SIEM)</span>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <span class="flow-icon">🗄️</span>
+                    <span class="flow-text">OpenSearch Database</span>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <span class="flow-icon">📊</span>
+                    <span class="flow-text">Wazuh Dashboard</span>
+                </div>
+            </div>
+            
+            <div class="soar-module">
+                <div class="module-header">
+                    <h3>🤖 Shuffle SOAR Platform</h3>
+                </div>
+                <div class="module-features">
+                    <div class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Playbooks automáticos</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Clasificación de emails</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Envío a SPAM</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Integraciones externas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- COMPONENTES -->
-    <section id="componentes">
-        <h2>🧩 Componentes Principales</h2>
+    <section id="componentes" class="fade-in-section">
+        <div class="section-header">
+            <h2>🧩 Componentes Principales</h2>
+            <div class="section-underline"></div>
+            <div class="dev-badge">EN CONSTRUCCIÓN</div>
+        </div>
 
-        <ul>
-            <li><strong>Gmail API</strong> – Recolección de correos sospechosos.</li>
-            <li><strong>SecureMail Collector</strong> – Normaliza eventos y los envía al SIEM.</li>
-            <li><strong>Shuffle SOAR</strong> – Automatiza acciones y respuestas.</li>
-            <li><strong>Wazuh Manager</strong> – Correlación y generación de alertas.</li>
-            <li><strong>OpenSearch</strong> – Base de datos de logs.</li>
-            <li><strong>Wazuh Dashboard</strong> – Panel para análisis e investigación.</li>
-        </ul>
+        <div class="dev-warning">
+            <strong>⚠️ Nota Importante:</strong> Los siguientes componentes están en diferentes etapas de desarrollo.
+            Algunos son conceptos teóricos, otros prototipos y algunos están en fase de prueba.
+        </div>
+
+        <div class="components-grid">
+            <div class="component-card dev-component">
+                <div class="component-icon">📧</div>
+                <div class="status-badge">EN PRUEBAS</div>
+                <h3>Gmail API</h3>
+                <p>Recolección de correos sospechosos mediante API oficial de Google. <em>(Funcionalidad básica implementada)</em></p>
+            </div>
+            <div class="component-card dev-component">
+                <div class="component-icon">🔄</div>
+                <div class="status-badge">PROTOTIPO</div>
+                <h3>SecureMail Collector</h3>
+                <p>Normaliza eventos y los envía al SIEM de forma estructurada. <em>(En desarrollo activo)</em></p>
+            </div>
+            <div class="component-card dev-component">
+                <div class="component-icon">🤖</div>
+                <div class="status-badge">PLANIFICADO</div>
+                <h3>Shuffle SOAR</h3>
+                <p>Automatiza acciones y respuestas mediante playbooks inteligentes. <em>(Por implementar)</em></p>
+            </div>
+            <div class="component-card dev-component">
+                <div class="component-icon">🛡️</div>
+                <div class="status-badge">BETA</div>
+                <h3>Wazuh Manager</h3>
+                <p>Correlación de eventos y generación de alertas de seguridad. <em>(Configuración básica)</em></p>
+            </div>
+            <div class="component-card dev-component">
+                <div class="component-icon">🗄️</div>
+                <div class="status-badge">CONFIGURADO</div>
+                <h3>OpenSearch</h3>
+                <p>Base de datos distribuida para almacenamiento de logs. <em>(Instancia de prueba activa)</em></p>
+            </div>
+            <div class="component-card dev-component">
+                <div class="component-icon">📊</div>
+                <div class="status-badge">LIMITADO</div>
+                <h3>Wazuh Dashboard</h3>
+                <p>Panel visual para análisis e investigación forense. <em>(Dashboards básicos funcionando)</em></p>
+            </div>
+        </div>
     </section>
 
     <!-- WORKFLOW -->
-    <section id="workflow">
-        <h2>🔄 Flujo de Trabajo</h2>
+    <section id="workflow" class="fade-in-section">
+        <div class="section-header">
+            <h2>🔄 Flujo de Trabajo</h2>
+            <div class="section-underline"></div>
+        </div>
 
-        <ol>
-            <li>Autenticación con Gmail API.</li>
-            <li>Extracción y normalización de correos.</li>
-            <li>Análisis inicial (headers, URLs, adjuntos).</li>
-            <li>Envío del evento a SOAR y Wazuh simultáneamente.</li>
-            <li>Playbook de clasificación y acciones automáticas.</li>
-            <li>Indexación en OpenSearch.</li>
-            <li>Alerta en Wazuh si existe amenaza.</li>
-        </ol>
+        <div class="workflow-container">
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Autenticación</h3>
+                        <p>Conexión segura con Gmail API mediante OAuth2</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Extracción</h3>
+                        <p>Recolección y normalización de correos sospechosos</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Análisis Inicial</h3>
+                        <p>Inspección de headers, URLs y adjuntos</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Distribución</h3>
+                        <p>Envío simultáneo a SOAR y Wazuh</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Automatización</h3>
+                        <p>Ejecución de playbooks de clasificación</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Indexación</h3>
+                        <p>Almacenamiento en base de datos OpenSearch</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Alerta</h3>
+                        <p>Notificación de amenazas en Wazuh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- SOAR -->
-    <section id="soar">
-        <h2>⚙️ Automatización con Shuffle SOAR</h2>
+    <section id="soar" class="fade-in-section">
+        <div class="section-header">
+            <h2>⚙️ Automatización con Shuffle SOAR</h2>
+            <div class="section-underline"></div>
+        </div>
 
-        <p>Los playbooks permiten ejecutar acciones automáticas:</p>
-        <ul>
-            <li>Mover correos a SPAM</li>
-            <li>Eliminar correo sospechoso</li>
-            <li>Clasificar por severidad</li>
-            <li>Notificar a administradores</li>
-            <li>Crear incidentes en Wazuh</li>
-        </ul>
-
-<pre class="diagram">
-[Gmail Trigger] → [Análisis] → [Clasificar] → [Mover a Spam] → [Registrar en Wazuh]
-</pre>
+        <div class="soar-content">
+            <div class="soar-description">
+                <p class="lead">Los playbooks permiten ejecutar acciones automáticas inteligentes:</p>
+            </div>
+            
+            <div class="automation-grid">
+                <div class="automation-item">
+                    <div class="automation-icon">📧</div>
+                    <h3>Mover a SPAM</h3>
+                    <p>Clasificación automática de correos maliciosos</p>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">🗑️</div>
+                    <h3>Eliminar Amenazas</h3>
+                    <p>Remoción segura de correos peligrosos</p>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">🚨</div>
+                    <h3>Clasificación por Severidad</h3>
+                    <p>Priorización basada en nivel de threat</p>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">📢</div>
+                    <h3>Notificaciones</h3>
+                    <p>Alertas automáticas a administradores</p>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">📋</div>
+                    <h3>Crear Incidentes</h3>
+                    <p>Generación de casos en Wazuh SIEM</p>
+                </div>
+            </div>
+            
+            <div class="workflow-flow">
+                <div class="flow-step">
+                    <span class="flow-icon">📧</span>
+                    <span class="flow-label">Gmail Trigger</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <span class="flow-icon">🔍</span>
+                    <span class="flow-label">Análisis</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <span class="flow-icon">🏷️</span>
+                    <span class="flow-label">Clasificar</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <span class="flow-icon">📩</span>
+                    <span class="flow-label">Mover a Spam</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <span class="flow-icon">📊</span>
+                    <span class="flow-label">Registrar en Wazuh</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- WAZUH -->
-    <section id="wazuh">
-        <h2>📊 Análisis SIEM con Wazuh</h2>
+    <section id="wazuh" class="fade-in-section">
+        <div class="section-header">
+            <h2>📊 Análisis SIEM con Wazuh</h2>
+            <div class="section-underline"></div>
+        </div>
 
-        <p>Wazuh provee correlación, alertas y dashboards:</p>
-
-        <ul>
-            <li>Detección de amenazas en correos.</li>
-            <li>Reglas personalizadas.</li>
-            <li>Auditoría completa del tráfico de Gmail.</li>
-            <li>Investigación forense mediante OpenSearch.</li>
-        </ul>
+        <div class="wazuh-content">
+            <p class="lead">Wazuh provee correlación avanzada, alertas inteligentes y dashboards interactivos:</p>
+            
+            <div class="wazuh-features">
+                <div class="wazuh-feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Detección de Amenazas</h3>
+                    <p>Identificación automática de patrones maliciosos en correos</p>
+                </div>
+                <div class="wazuh-feature">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Reglas Personalizadas</h3>
+                    <p>Configuración adaptada a políticas de seguridad específicas</p>
+                </div>
+                <div class="wazuh-feature">
+                    <div class="feature-icon">📋</div>
+                    <h3>Auditoría Completa</h3>
+                    <p>Registro detallado de todo el tráfico de Gmail</p>
+                </div>
+                <div class="wazuh-feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Investigación Forense</h3>
+                    <p>Análisis profundo mediante consultas OpenSearch</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ROADMAP -->
-    <section id="roadmap">
-        <h2>🧭 Roadmap del Proyecto</h2>
-        <ul>
-            <li>[x] Infraestructura con Docker Compose</li>
-            <li>[x] Integración Wazuh ↔ OpenSearch</li>
-            <li>[x] Integración SOAR completa</li>
-            <li>[ ] Módulo avanzado de análisis de adjuntos</li>
-            <li>[ ] Nuevos playbooks inteligentes</li>
-            <li>[ ] Sistema de cuarentena de correos</li>
-        </ul>
+    <section id="roadmap" class="fade-in-section">
+        <div class="section-header">
+            <h2>🧭 Roadmap del Proyecto</h2>
+            <div class="section-underline"></div>
+        </div>
+
+        <div class="roadmap-timeline">
+            <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                    <h3>Infraestructura Docker Compose</h3>
+                    <p>Entorno completo desplegable con un comando</p>
+                </div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                    <h3>Integración Wazuh ↔ OpenSearch</h3>
+                    <p>Correlación y almacenamiento de datos optimizado</p>
+                </div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                    <h3>Integración SOAR completa</h3>
+                    <p>Playbooks funcionales y automatización inteligente</p>
+                </div>
+            </div>
+            <div class="timeline-item upcoming">
+                <div class="timeline-marker">📋</div>
+                <div class="timeline-content">
+                    <h3>Análisis Avanzado de Adjuntos</h3>
+                    <p>Detección de malware y análisis de archivos</p>
+                </div>
+            </div>
+            <div class="timeline-item upcoming">
+                <div class="timeline-marker">🤖</div>
+                <div class="timeline-content">
+                    <h3>Playbooks Inteligentes</h3>
+                    <p>Machine learning para clasificación mejorada</p>
+                </div>
+            </div>
+            <div class="timeline-item upcoming">
+                <div class="timeline-marker">🔒</div>
+                <div class="timeline-content">
+                    <h3>Sistema de Cuarentena</h3>
+                    <p>Aislamiento seguro de correos sospechosos</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto">
-        <h2>📩 Contacto</h2>
-        <p>¿Quieres colaborar? ¿Encontraste un bug?</p>
-        <p>Abre un issue en GitHub o envía un PR.</p>
+    <section id="contacto" class="fade-in-section">
+        <div class="section-header">
+            <h2>📩 Contacto</h2>
+            <div class="section-underline"></div>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-text">
+                <p class="lead">¿Quieres colaborar? ¿Encontraste un bug?</p>
+                <p>Únete a nuestra comunidad y contribuye al proyecto open source.</p>
+            </div>
+            <div class="contact-actions">
+                <a href="https://github.com" class="btn-primary" target="_blank" rel="noopener">
+                    <span class="btn-icon">🐙</span>
+                    Ver en GitHub
+                </a>
+                <a href="mailto:donotexistsYET" class="btn-secondary">
+                    <span class="btn-icon">📧</span>
+                    Enviar Email
+                </a>
+            </div>
+        </div>
     </section>
 
 </main>
