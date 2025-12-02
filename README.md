@@ -1,4 +1,4 @@
-# 🛡️ SecureMail Sentinel
+# 🛡️ SecMail 
 ### Sistema automatizado de detección, clasificación y mitigación de correos potencialmente maliciosos usando Wazuh SIEM + Shuffle SOAR + Gmail API
 
 ---
@@ -137,3 +137,4 @@ Acceso Shuffle Frontend:
 - Spoofing indicators
 - Automatic actions history
 - SOAR actions timeline
+
