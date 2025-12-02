@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureMail Threat Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f512.svg">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>🔐 SecureMail Threat Automation</h1>
+        <p class="subtitle">Automatización inteligente de amenazas basadas en correo</p>
+        <a href="#docs" class="btn-primary">Ver Documentación</a>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#workflow">Flujo de Trabajo</a>
+    <a href="#componentes">Componentes</a>
+    <a href="#soar">SOAR</a>
+    <a href="#wazuh">Wazuh</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#contacto">Contacto</a>
+</nav>
+
+<main class="container">
+
+    <!-- INTRO -->
+    <section id="docs">
+        <h2>📘 Documentación Oficial</h2>
+        <p>
+            SecureMail Threat Automation es un sistema modular que detecta, clasifica
+            y mitiga correos potencialmente maliciosos combinando automatización SOAR,
+            análisis SIEM y recolección avanzada de logs mediante Gmail API.
+        </p>
+    </section>
+
+    <!-- ARQUITECTURA -->
+    <section id="arquitectura">
+        <h2>🧱 Arquitectura del Sistema</h2>
+
+<pre class="diagram">
+                Gmail API
+                    ↓
+        [ SecureMail Collector ]
+                    ↓
+              Wazuh Manager (SIEM)
+                    ↓
+              OpenSearch Database
+                    ↓
+            Wazuh Dashboard (UI)
+
+
+        ┌──────────────────────────────┐
+        │            Shuffle           │
+        │──────────── SOAR ────────────│
+        │ - Playbooks automáticos      │
+        │ - Clasificación de emails    │
+        │ - Envío a SPAM               │
+        │ - Integraciones externas     │
+        └──────────────────────────────┘
+</pre>
+    </section>
+
+    <!-- COMPONENTES -->
+    <section id="componentes">
+        <h2>🧩 Componentes Principales</h2>
+
+        <ul>
+            <li><strong>Gmail API</strong> – Recolección de correos sospechosos.</li>
+            <li><strong>SecureMail Collector</strong> – Normaliza eventos y los envía al SIEM.</li>
+            <li><strong>Shuffle SOAR</strong> – Automatiza acciones y respuestas.</li>
+            <li><strong>Wazuh Manager</strong> – Correlación y generación de alertas.</li>
+            <li><strong>OpenSearch</strong> – Base de datos de logs.</li>
+            <li><strong>Wazuh Dashboard</strong> – Panel para análisis e investigación.</li>
+        </ul>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="workflow">
+        <h2>🔄 Flujo de Trabajo</h2>
+
+        <ol>
+            <li>Autenticación con Gmail API.</li>
+            <li>Extracción y normalización de correos.</li>
+            <li>Análisis inicial (headers, URLs, adjuntos).</li>
+            <li>Envío del evento a SOAR y Wazuh simultáneamente.</li>
+            <li>Playbook de clasificación y acciones automáticas.</li>
+            <li>Indexación en OpenSearch.</li>
+            <li>Alerta en Wazuh si existe amenaza.</li>
+        </ol>
+    </section>
+
+    <!-- SOAR -->
+    <section id="soar">
+        <h2>⚙️ Automatización con Shuffle SOAR</h2>
+
+        <p>Los playbooks permiten ejecutar acciones automáticas:</p>
+        <ul>
+            <li>Mover correos a SPAM</li>
+            <li>Eliminar correo sospechoso</li>
+            <li>Clasificar por severidad</li>
+            <li>Notificar a administradores</li>
+            <li>Crear incidentes en Wazuh</li>
+        </ul>
+
+<pre class="diagram">
+[Gmail Trigger] → [Análisis] → [Clasificar] → [Mover a Spam] → [Registrar en Wazuh]
+</pre>
+    </section>
+
+    <!-- WAZUH -->
+    <section id="wazuh">
+        <h2>📊 Análisis SIEM con Wazuh</h2>
+
+        <p>Wazuh provee correlación, alertas y dashboards:</p>
+
+        <ul>
+            <li>Detección de amenazas en correos.</li>
+            <li>Reglas personalizadas.</li>
+            <li>Auditoría completa del tráfico de Gmail.</li>
+            <li>Investigación forense mediante OpenSearch.</li>
+        </ul>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+        <h2>🧭 Roadmap del Proyecto</h2>
+        <ul>
+            <li>[x] Infraestructura con Docker Compose</li>
+            <li>[x] Integración Wazuh ↔ OpenSearch</li>
+            <li>[x] Integración SOAR completa</li>
+            <li>[ ] Módulo avanzado de análisis de adjuntos</li>
+            <li>[ ] Nuevos playbooks inteligentes</li>
+            <li>[ ] Sistema de cuarentena de correos</li>
+        </ul>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2>📩 Contacto</h2>
+        <p>¿Quieres colaborar? ¿Encontraste un bug?</p>
+        <p>Abre un issue en GitHub o envía un PR.</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>SecureMail Threat Automation — Proyecto Open Source MIT</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
